@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# get pid of existing gnus-indicator process
+PID=`pidof gnus-indicator-d`
+
+# if option == -1 kill it and exit
+if [[ ${1} == -1 ]] && [[ $PID != "" ]]; then
+    kill $PID
+    exit 0
+else if [[ ${1} == -1 ]]; then
+    exit 0   
+     fi
+fi
+
+# else start a new process and kill the old one (if any) 
+if [[ $PID == "" ]]; then
+    gnus-indicator-d ${1} &
+else
+    kill $PID
+    gnus-indicator-d ${1} &
+fi
+
+exit 0

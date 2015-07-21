@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="19.99786"
+   height="19.998459"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="sensors_warm.svg"
+   inkscape:export-filename="/home/pigo/Projects/sensors-indicator/icons/sensors_cold.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3765"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#0500b8;stop-opacity:1;"
+         offset="0"
+         id="stop3767" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3757"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3759" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5213">
+      <stop
+         id="stop3785"
+         offset="0"
+         style="stop-color:#ffd07c;stop-opacity:0.6692307;" />
+      <stop
+         style="stop-color:#fda80c;stop-opacity:1;"
+         offset="1"
+         id="stop5217" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5197"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5199" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5213"
+       id="radialGradient3783"
+       cx="395.35959"
+       cy="438.5769"
+       fx="395.35959"
+       fy="438.5769"
+       r="97.428406"
+       gradientTransform="matrix(-1.0315901,0.11277773,-0.10504623,-0.9466867,850.10951,811.88382)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="-8.1642019"
+     inkscape:cy="4.7132273"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-318.14463,-517.07695)">
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient3783);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.85353825999999966;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;opacity:1"
+       id="path2985"
+       sodipodi:cx="373.57144"
+       sodipodi:cy="472.36218"
+       sodipodi:rx="96.428574"
+       sodipodi:ry="95.714287"
+       d="m 470.00002,472.36218 c 0,52.86154 -43.17255,95.71429 -96.42858,95.71429 -53.25603,0 -96.42857,-42.85275 -96.42857,-95.71429 0,-52.86154 43.17254,-95.71428 96.42857,-95.71428 53.25603,0 96.42858,42.85274 96.42858,95.71428 z"
+       transform="matrix(0.10263537,0,0,0.10340131,289.80123,478.2336)"
+       inkscape:export-filename="/home/pigo/Pictures/gnus_indicator_cold.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>

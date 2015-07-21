@@ -1,0 +1,33 @@
+#!/bin/bash
+
+rm src/*~ &> /dev/null
+PROGS=`ls src/*`
+PROGS=${PROGS//src/bin}
+PROGS=${PROGS//.c/}
+
+PROGS_LIST=`ls src | tr " " "\n"`
+
+# write Makefile
+echo -e 'GTK_LIBS:=`pkg-config --cflags --libs gtk+-2.0`' > Makefile
+echo -e 'APPINDICATOR_LIBS:=`pkg-config --cflags --libs appindicator-0.1`\n' >> Makefile
+
+echo -e 'CXX=g++' >> Makefile
+echo -e 'CXXFLAGS=-std=c++11 -Wall\n' >> Makefile
+
+echo -e 'all: '$PROGS >> Makefile
+echo -e '\n' >> Makefile   
+
+for PROG in $PROGS_LIST
+do
+    EXE=${PROG%".c"}
+    echo -e 'bin/'$EXE':  src/'$PROG >> Makefile
+    echo -e '\t$(CXX) $(CXXFLAGS) -o $@ $^ $(GTK_LIBS) $(APPINDICATOR_LIBS)' >> Makefile
+    echo -e '\n' >> Makefile
+done
+
+echo -e 'clean:' >> Makefile
+echo -e '\trm -f bin/*\n' >> Makefile
+
+echo -e 'install:' >> Makefile
+echo -e '\tcp bin/sensors-indicator-d /usr/bin/' >> Makefile
+echo -e '\tcp icons/sensors_*.svg /usr/share/pixmaps/' >> Makefile

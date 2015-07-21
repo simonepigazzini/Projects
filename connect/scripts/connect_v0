@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ ${1} = "lxplus" ]; then
+   ssh -X spigazzi@${1}${2}.cern.ch
+fi
+
+if [ ${1} = "hercules" ]; then 
+   ssh -X pigazzini@hercules.mib.infn.it
+fi
+
+if [ ${1} = "virgilio" ]; then 
+   ssh -X pigazzini@virgilio.mib.infn.it
+fi

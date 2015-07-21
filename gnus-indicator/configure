@@ -1,0 +1,34 @@
+#!/bin/bash
+
+rm src/*~ &> /dev/null
+PROGS=`ls src/*`
+PROGS=${PROGS//src/bin}
+PROGS=${PROGS//.c/}
+
+PROGS_LIST=`ls src | tr " " "\n"`
+
+# write Makefile
+echo -e 'GTK_LIBS:=`pkg-config --cflags --libs gtk+-2.0`' > Makefile
+echo -e 'APPINDICATOR_LIBS:=`pkg-config --cflags --libs appindicator-0.1`\n' >> Makefile
+
+echo -e 'CC=gcc' >> Makefile
+echo -e 'CFLAGS=-Wall\n' >> Makefile
+
+echo -e 'all: '$PROGS >> Makefile
+echo -e '\n' >> Makefile   
+
+for PROG in $PROGS_LIST
+do
+    EXE=${PROG%".c"}
+    echo -e 'bin/'$EXE':  src/'$PROG >> Makefile
+    echo -e '\t$(CC) $(CFLAGS) -o $@ $^ $(GTK_LIBS) $(APPINDICATOR_LIBS)' >> Makefile
+    echo -e '\n' >> Makefile
+done
+
+echo -e 'clean:' >> Makefile
+echo -e '\trm -f bin/*\n' >> Makefile
+
+echo -e 'install:' >> Makefile
+echo -e '\tcp bin/gnus-indicator-d /usr/bin/' >> Makefile
+echo -e '\tcp scripts/gnus-indicator /usr/bin/' >> Makefile
+echo -e '\tcp icons/gnus_indicator_*.png /usr/share/pixmaps/' >> Makefile

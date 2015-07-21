@@ -1,0 +1,140 @@
+#!/bin/sh
+
+function print_usage ()
+{
+    echo -e 'usage: connect <account>'
+    echo -e '       action  <account>  <options>'
+    print_available_acc
+    echo -e '\navailable action:'
+    echo -e '\tadd <account> -u <username> -a <address>     -> add account'
+    echo -e '\tdel <account>                                -> delete account'
+    echo -e '\tmod <account> [-u <username>] [-a <address>] -> modify account'
+}
+
+function print_available_acc ()
+{
+    echo -e '\navailable accounts:'
+    ACCOUNTS=`cat ~/.connect.d/known_accounts | awk '/.*/ {print $1;}' | tr " " "\n"`
+    for ACCOUNT in $ACCOUNTS
+    do
+        echo -e '\t'$ACCOUNT
+    done
+}
+
+function add_account ()
+{
+    check=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $1;}'`
+    if [ "$check" ]; then
+        echo -e 'ERROR: this account already exist!'
+        exit 1
+    else
+        echo -e ${1}' '$USERNAME' '$ADDRESS >> ~/.connect.d/known_accounts
+        echo -e 'account '${1}' has been added!'
+    fi
+}
+
+function delete_account ()
+{
+    check=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $1;}'`
+    if [ -z "$check" ]; then
+        echo -e "account "${1}" doesn't exist!"
+        exit 0
+    fi
+    sed -i".tmp" '/^'${1}'/d' ~/.connect.d/known_accounts
+    rm ~/.connect.d/known_accounts.tmp
+    echo -e 'account '${1}' has been deleted!'
+}
+
+function modify_account ()
+{
+    if [ -z "$USERNAME" ]; then
+        USERNAME=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $2;}'`
+    else if [ -z "$ADDRESS" ]; then
+             ADDRESS=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $3;}'`
+         fi
+    fi
+    delete_account ${1}
+    add_account ${1}
+    echo -e 'account '${1}' has been modified!'
+}
+
+function connect_account ()
+{
+    USERNAME=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $2;}'`
+    ADDRESS=`cat ~/.connect.d/known_accounts | awk '/^'${1}' / {print $3;}'`
+
+    if [ -z "$USERNAME" ]; then
+        echo -e 'ERROR: account not found!'
+        print_available_acc
+        exit 1
+    else
+        ssh -Y $USERNAME@$ADDRESS
+    fi          
+}
+
+function parse_input ()
+{
+    #reset
+    OPTIND=1
+
+    while getopts u:a: opt
+    do
+        case $opt in
+            u)
+                USERNAME=$OPTARG
+                ;;
+            a)
+                ADDRESS=$OPTARG
+                ;;
+        esac
+    done
+}
+
+ACTION=${1}
+ACCOUNT=${2}
+
+if [ -z ${1} ]; then
+    print_usage
+    exit 1
+fi
+
+if [ -z ${2} ]; then
+    connect_account ${1}
+else
+    case $ACTION in
+         add)
+             shift 2
+             parse_input $@
+             if [ -z "$USERNAME" ]; then
+                 echo -e 'ERROR: no username provided!'
+                 print_usage
+                 exit 1
+             fi
+             if [ -z "$ADDRESS" ]; then
+                 echo -e 'ERROR: no address provided!'
+                 print_usage
+                 exit 1
+             fi
+                 add_account $ACCOUNT
+             ;;
+         del)
+             delete_account $ACCOUNT
+             ;;
+         mod)
+             shift 2
+             parse_input $@
+             if [ -z "$USERNAME" ] && [ -z "$ADDRESS" ]; then
+                 echo -e 'ERROR: no username nor address provided!'
+                 print_usage
+                 exit 1
+             fi
+             modify_account $ACCOUNT
+             ;;
+         *)
+             echo -e 'ERROR: action '$OPTION' not valid!'
+             print_usage
+             exit 1
+     esac
+fi
+
+exit 0
