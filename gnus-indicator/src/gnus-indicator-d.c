@@ -127,11 +127,11 @@ int main (int argc, char **argv)
     indicator_menu = gtk_ui_manager_get_widget (uim, "/ui/IndicatorPopup");
 
     indicator = app_indicator_new ("example-simple-client",
-                                   "/usr/share/pixmaps/gnus_indicator_base.png",
+                                   "/usr/share/pixmaps/gnus_indicator_base.svg",
                                    APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 
     app_indicator_set_attention_icon(indicator,
-                                     "/usr/share/pixmaps/gnus_indicator_attention.png");
+                                     "/usr/share/pixmaps/gnus_indicator_newmail.svg");
     app_indicator_set_menu (indicator, GTK_MENU (indicator_menu));
     /* set status */
     if(status == 0)

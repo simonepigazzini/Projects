@@ -29,4 +29,4 @@ clean:
 install:
 	cp bin/gnus-indicator-d /usr/bin/
 	cp scripts/gnus-indicator /usr/bin/
-	cp icons/gnus_indicator_*.png /usr/share/pixmaps/
+	cp icons/gnus_indicator_*.svg /usr/share/pixmaps/
